@@ -3,7 +3,7 @@
  * jQuery Bookmarklet FrameWork - version 1.0
  * Originally idea by Brett Barros. Nothing left of that code, however.
  *
- * Copyright (c) 2013 Lennart Borgman.
+ * Copyright (c) 2014 Lennart Borgman, http://OurComments.org/.
  *
  * Released under the Creative Commons Attribution 3.0 Unported License,
  * as defined here: http://creativecommons.org/licenses/by/3.0/
@@ -205,7 +205,12 @@
             var elt = old_focus_doc.activeElement;
             old_focus.push(elt);
             if ("IFRAME" == elt.nodeName) {
-                old_focus_doc = elt.contentDocument;
+                try {
+                    old_focus_doc = elt.contentDocument;
+                } catch(e) {
+                    // We probably could not access it. Jump out.
+                    old_focus_doc = null;
+                }
                 if (!old_focus_doc) {
                     n_focus = 200;
                 }
@@ -482,6 +487,8 @@
     function findWord(ev) {
         // http://www.w3schools.com/jquery/event_pagex.asp
         // These are relative to the document. In this case the main document.
+        ev.stopPropagation();
+        ev.stopImmediatePropagation();
         var page_x = ev.pageX;
         var page_y = ev.pageY;
         var client_x = ev.clientX;
@@ -1567,13 +1574,17 @@
 
         // console.log("dynItemsHtml=", dynItemsHtml);
         var innerDynElt = document.getElementById("myMenuInnerDyn-"+myNamespace);
-        while (innerDynElt.hasChildNodes()) inndeDynElt.removeChild(innerDyn.firstChild);
+        while (innerDynElt.hasChildNodes()) innerDynElt.removeChild(innerDynElt.firstChild);
         for (var i=0; i<dynItemsHtml.length; i++) innerDynElt.appendChild(dynItemsHtml[i]);
         var theWordsElt = document.getElementById("theWords-"+myNamespace);
         if ("TEXTAREA" == theWordsElt.nodeName || "INPUT" == theWordsElt.nodeName) {
             theWordsElt.value = wordPar;
         } else {
-            theWordsElt.replaceChild(document.createTextNode(wordPar), theWordsElt.firstChild)
+            // Fix-me: Why could firstChild be null?
+            if (theWordsElt.firstChild)
+                theWordsElt.replaceChild(document.createTextNode(wordPar), theWordsElt.firstChild);
+            else
+                theWordsElt.appendChild(document.createTextNode(wordPar));
         }
         if (!justUpdateMenu) {
             // console.log("for inner, itemsHtml", itemsHtml);
@@ -1655,8 +1666,8 @@
         var id = "noWord-"+myNamespace;
         var html = mkElt("div", { "id": id }, [redP,msgDiv]);
         document.body.appendChild(html);
-        var div = document.querySelector("#noWord-"+myNamespace);
-        div.addEventListener("mouseout", function(){ div.style.display = "none"; });
+        // var div = document.querySelector("#noWord-"+myNamespace);
+        html.addEventListener("mouseout", function(){ div.style.display = "none"; });
     }
 
     var myCachedTooltip = undefined;
