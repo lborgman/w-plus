@@ -1,5 +1,6 @@
 #myMenu-findword72789 * {
     box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
 }
 /* #myMenu-findword72789 :focus { */
 /*     outline: rgb(139, 177, 212) 2px solid !important; */
@@ -135,13 +136,14 @@ div#shield-findword72789 {
     opacity: 0.3 !important;
     filter: alpha(opacity = 50) !important;
     cursor: pointer!important;
-    z-index: 9234 !important; /* shield */
+    z-index: 12345676 !important; /* shield */
 }
 #noWord-findword72789 {
     position: fixed !important;
     padding: 0px !important;
     max-width: 310px !important;
     z-index: 123456789 !important; /* no word */
+    display: none;
 }
 #noWordInner-findword72789 {
     padding: 8px !important;
@@ -236,7 +238,7 @@ div#shield-findword72789 {
 }
 
 #myMenu-findword72789 {
-    z-index: 1234567 !important; /* menu */
+    z-index: 12345677 !important; /* menu */
     xposition: absolute !important;
     border: solid 1px #CCC !important;
     width: 310px !important;
@@ -282,6 +284,9 @@ div#shield-findword72789 {
     margin:2px!important;
     margin-left:6px!important;
     margin-right:8px!important;
+    width: 16px !important;
+    height: 16px !important;
+    vertical-align: top !important; /* Get rid of the extra height, see stackoverflow */
 }
 #myMenuInner-findword72789, #myMenuInnerDyn-findword72789 {
     padding:0!important;
