@@ -9,6 +9,9 @@
  * as defined here: http://creativecommons.org/licenses/by/3.0/
  */
 
+
+////// Fix-me and Fixed!
+//
 // Work on this page currently (iframe problems!). Maybe the iframe
 // problem is solved, but now something seems to loop when I click on
 // "påtalade" as a second word to the left of the first. Or, better,
@@ -34,18 +37,19 @@
 
 
 // Fix-me: Some CSS problems. Can't remember where now, but:
-// - http://sydsvenskan.se/ - works
+// - http://sydsvenskan.se/ - fixed
 
 
 // Fix-me: Here it just dies after clicking the first word. No menu is
-// visible. http://www.svt.se/nyheter/vetenskap/geotaggning-i-manniskohjarnan - works
+// visible. http://www.svt.se/nyheter/vetenskap/geotaggning-i-manniskohjarnan - fixed
 
 
-// Fix-me: As above. http://integral-options.blogspot.se/2013/11/memories-geotagged-with-spatial.html - works
+// Fix-me: As above. http://integral-options.blogspot.se/2013/11/memories-geotagged-with-spatial.html - fixed
 
 
 // Fix-me: It looks much bigger here: fixed.
 // http://www.tunedbody.com/scientists-finally-show-thoughts-can-cause-specific-molecular-changes-genes/#
+
 
 (function () {
 
@@ -711,7 +715,7 @@
                         theWords.setAttribute("contenteditable", "false");
                         theWords.style.backgroundColor = "#999";
                     }
-                    // menu.scrollIntoView("true");
+                    // menu.scrollIntoView(false);
                 }
                 toggleFixedMenuPos();
             }
