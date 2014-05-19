@@ -12,6 +12,7 @@
     "paths": ".",
     "externs": [
         "cw-externs.js",
+        "jquery-1.8.js" // jQuery is used in the page for updating!
     ],
     "custom-externs-only": false,
     "mode":"advanced",

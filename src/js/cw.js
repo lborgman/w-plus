@@ -1287,8 +1287,9 @@
         var cancelOldBtn = mkElt("button", null, "Cancel");
         cancelOldBtn.addEventListener("click", function(){
             console.log("frag", frag);
-            jq(frag).slideUp().
-                element(0).parentNode.removeChild(frag);
+            // jq(frag).slideUp(). element(0).parentNode.removeChild(frag);
+            frag.parentNode.removeChild(frag);
+            console.log("mobile", mobile);
             if (mobile) setStateDefault();
         });
         frag.appendChild(mkElt("div", {"style":"margin-bottom:20px"},
