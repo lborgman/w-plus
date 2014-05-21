@@ -783,7 +783,11 @@
                     && "STYLE" != child.nodeName
                     && "IFRAME" != child.nodeName
                    )
-                    walkTheDOM(child, prevChild, func, level+1);
+                {
+                    var s = window.getComputedStyle(child);
+                    if ((!s) || (s.display !== "none") && (s.visibility !== "hidden"))
+                        walkTheDOM(child, prevChild, func, level+1);
+                }
                 // prevChild = child;
                 child = child.nextSibling;
             }
