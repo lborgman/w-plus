@@ -264,7 +264,8 @@ div#shield-findword72789 {
     margin: 0px !important;
     line-height: 20px !important;
     height: 20px !important;
-    background: none white !important;
+    background-image: none !important;
+    background-color: white !important;
     font-size: 12px !important;
     text-align: left !important;
 }

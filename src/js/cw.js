@@ -12,6 +12,13 @@
 
 ////// Fix-me and Fixed!
 //
+// Fix-me: Mouseover coloring etc stopped working.
+// The reason seems to be a change on how background-color is
+// represented on an element. Previously it was
+// "background-color:". Now it is "background:".
+// - Fixed
+//
+//
 // Work on this page currently (iframe problems!). Maybe the iframe
 // problem is solved, but now something seems to loop when I click on
 // "påtalade" as a second word to the left of the first. Or, better,
