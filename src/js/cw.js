@@ -17,6 +17,7 @@
 // represented on an element. Previously it was
 // "background-color:". Now it is "background:".
 // - Fixed
+// Fix-me: Use classes and long css paths instead for the above!
 //
 //
 // Work on this page currently (iframe problems!). Maybe the iframe
@@ -204,6 +205,7 @@
         // load_bm_jQuery_fn_elementFromPoint();
         // loadDrags();
 
+        createStyle();
         createShield();
         createNoWord();
         addCss_cw_css_js();
@@ -595,9 +597,10 @@
     }
     function clearCurrentWordBG() {
         var allCW = document.querySelectorAll("span."+myNamespace+"CurrentWord");
-        for (var i=1; i<allCW.length; i++) {
+        for (var i=0; i<allCW.length; i++) {
             var style = allCW[i].style;
             style.cssText = style.cssText.replace(/background-color:[^;]*/, "");
+            style.cssText = style.cssText.replace(/background:[^;]*/, "");
         }
     }
     function clearCurrentWord() {
@@ -833,6 +836,7 @@
             +"color:inherit !important;"
             +"text-align:inherit !important;"
             +"text-decoration:inherit !important;"
+            +"text-transform:inherit !important;"
         ;
         function walkTheDOM(node, func) {
             // console.log("walk node", node.nodeName, node);
@@ -1652,6 +1656,17 @@
     function mobileCssOverride() {
         // Change font size in input fields to avoid zooming:
         document.getElementById("theWords-"+myNamespace).style.fontSize = "14px";
+    }
+
+    // For things that can not be in the style attribute.
+    function createStyle() {
+        var style = document.getElementById(myNamespace+"-style");
+        if (!style) {
+            style = mkElt("style", {"id":myNamespace+"-style"},
+                          "#myMenu-"+myNamespace+" *::before { content: none !important; } "
+                          +"#myMenu-"+myNamespace+" *::after { content: none !important; }");
+            document.head.appendChild(style);
+        }
     }
 
     // Caching covers:
