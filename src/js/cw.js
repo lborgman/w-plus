@@ -1324,7 +1324,6 @@
         wordPar = wordPar.replace(/\s+/g, " ");
         wordPar = wordPar.trim();
         if (console) console.log("getMenu ("+wordPar+")");
-        // http://labs.abeautifulsite.net/archived/jquery-contextMenu/demo/
         var menu = myMenu();
         // console.log("getMenu, menu=", menu);
         // if (!wordPar) return menu;
@@ -1617,14 +1616,14 @@
                 // tab1[i].style.cssText += tab1[i].style.cssText + ";outline:none;";
                 // console.log("tab1[i].style.cssText", tab1[i].style.cssText);
             };
-            if (!touchDevice) document.getElementById("theWords-"+myNamespace).focus();
             document.getElementById("googleSiteUp-"+myNamespace)
                 .addEventListener("keydown",evGoogleSiteUpKeydown);
             document.getElementById("theWords-"+myNamespace)
                 .addEventListener("keyup",evTheWordsKeyup);
             document.getElementById("googleSiteBx-"+myNamespace)
                 .addEventListener("change",evGoogleSiteBxChange);
-            if (!touchDevice) document.getElementById("theWords-"+myNamespace).focus();
+            // if (!touchDevice) document.getElementById("theWords-"+myNamespace).focus();
+            // if (!touchDevice) theWordsElt.focus();
         } else {
         }
         var googleSiteURLelt = document.getElementById("googleSiteURL-"+myNamespace);
@@ -1647,8 +1646,10 @@
                 // console.log("oldFocus.focus()");
                 oldFocus.focus();
             } else {
-                document.getElementById("theWords-"+myNamespace).blur();
-                document.getElementById("theWords-"+myNamespace).focus();
+            // return; // fix-me - NO scroll on firefox here
+            if (!touchDevice) theWordsElt.blur();
+            if (!touchDevice) theWordsElt.focus();
+            // return; // fix-me - scroll on firefox here
             }
             // console.log("activeElement", document.activeElement);
         return menu;
